@@ -44,6 +44,17 @@ The React frontend provides a user-friendly interface for users to upload their 
 2. Configure your AWS credentials on your local machine.
 3. Set up appropriate CORS rules for your S3 bucket to allow frontend requests.
 
-## Contributing
+# User Image Upload to AWS S3 with Spring Boot and React
 
-Contributions are welcome! Feel free to fork the repository, make improvements, and submit pull requests.
+[Project Description]
+
+## Screenshots
+
+### User Profile Page
+
+![image](https://github.com/siddh1017/AWS-S3-image-upload-Spring-API/assets/110898485/bceabe49-4387-4be2-837d-753635672496)
+
+
+### Image Upload Interface
+
+![image](https://github.com/siddh1017/AWS-S3-image-upload-Spring-API/assets/110898485/6eb640ff-7b2b-4e2f-8c97-717f79734104)
