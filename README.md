@@ -4,13 +4,13 @@ This project demonstrates a simple web application that allows users to upload t
 
 ## Project Overview
 
-The application is divided into two main components: the backend built with Spring Boot and the frontend built with React. The backend provides an API for uploading images to Amazon S3, while the frontend offers a user interface for users to interact with the application.
+The application is divided into two main components: the backend built with Spring Boot and the frontend built with React. The backend provides an API for uploading images to Amazon S3 and DynamoDB for storing user data, while the frontend offers a user interface for users to interact with the application.
 
 ### Backend (Spring Boot)
 
-The Spring Boot backend is responsible for handling image uploads and interacting with Amazon S3. It exposes the following API endpoints:
+The Spring Boot backend is responsible for handling image uploads and interacting with Amazon S3 for storing images and DynamoDB for user data. It exposes the following API endpoints:
 
-- `POST /api/v1/user-profile/{userId}/image/upload`: Uploads a user's image to their dedicated folder in the S3 bucket.
+- `POST /api/v1/user-profile/{userId}/image/upload`: Uploads a user's image to their dedicated folder in the S3 bucket and stores user data in DynamoDB.
 
 - `GET /api/v1/user-profile/{userId}/image/download`: Retrieves a user's image from the S3 bucket.
 
@@ -28,7 +28,7 @@ The React frontend provides a user-friendly interface for users to upload their 
 
 1. Clone the repository to your local machine.
 2. Open the `backend` folder in your preferred IDE.
-3. Configure your AWS credentials in the `application.properties` file.
+3. Configure your AWS credentials and DynamoDB settings in the `application.properties` file.
 4. Run the Spring Boot application.
 
 ### Frontend (React)
@@ -40,21 +40,24 @@ The React frontend provides a user-friendly interface for users to upload their 
 
 ## AWS Configuration
 
-1. Create an S3 bucket for storing user images.
-2. Configure your AWS credentials on your local machine.
-3. Set up appropriate CORS rules for your S3 bucket to allow frontend requests.
+1. Create an S3 bucket for storing user images and make it public.
+2. Set up appropriate CORS rules for your S3 bucket to allow frontend requests.
+3. Create a DynamoDB table to store user data (userId, userName, userImageLink).
+4. Configure your AWS credentials on your local machine.
 
-# User Image Upload to AWS S3 with Spring Boot and React
+## Deployment
 
-[Project Description]
+The application has been deployed on Amazon Elastic Beanstalk and Amazon S3 for the frontend.
 
-## Screenshots
+- Backend URL: [http://profile-image-app-env.eba-8iex48dd.ap-south-1.elasticbeanstalk.com/](http://profile-image-app-env.eba-8iex48dd.ap-south-1.elasticbeanstalk.com/)
+- Frontend URL: [http://f-app-frontend-build.s3-website.ap-south-1.amazonaws.com/](http://f-app-frontend-build.s3-website.ap-south-1.amazonaws.com/)
 
-### User Profile Page
+## Future Improvements
 
-![image](https://github.com/siddh1017/AWS-S3-image-upload-Spring-API/assets/110898485/bceabe49-4387-4be2-837d-753635672496)
+- Implement Spring Security for user authentication and access control.
+- Enhance the user interface to improve the user experience.
+- Add more features such as user profile editing and deleting images.
+- Optimize the application for better performance and scalability.
 
+Feel free to contribute to the project by submitting pull requests or opening issues!
 
-### Image Upload Interface
-
-![image](https://github.com/siddh1017/AWS-S3-image-upload-Spring-API/assets/110898485/6eb640ff-7b2b-4e2f-8c97-717f79734104)
