@@ -52,6 +52,16 @@ The application has been deployed on Amazon Elastic Beanstalk and Amazon S3 for 
 - Backend URL: [http://profile-image-app-env.eba-8iex48dd.ap-south-1.elasticbeanstalk.com/](http://profile-image-app-env.eba-8iex48dd.ap-south-1.elasticbeanstalk.com/)
 - Frontend URL: [http://f-app-frontend-build.s3-website.ap-south-1.amazonaws.com/](http://f-app-frontend-build.s3-website.ap-south-1.amazonaws.com/)
 
+## Screenshots
+
+### User Profile Page
+![image](https://github.com/siddh1017/AWS-S3-image-upload-Spring-API/assets/110898485/3f621713-48f8-44ad-89f0-5efe71f4a867)
+![image](https://github.com/siddh1017/AWS-S3-image-upload-Spring-API/assets/110898485/ad8f46ad-e899-4dab-b3d6-766fafd78577)
+
+### DynamoDB table
+![image](https://github.com/siddh1017/AWS-S3-image-upload-Spring-API/assets/110898485/390d4128-e24b-4db0-b4c9-dade9bbade7e)
+
+
 ## Future Improvements
 
 - Implement Spring Security for user authentication and access control.
