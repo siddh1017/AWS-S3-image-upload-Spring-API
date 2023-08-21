@@ -17,13 +17,13 @@ public class AmazonConfig {
     @Bean
     public AmazonS3 s3() {
         AWSCredentials awsCredentials = new BasicAWSCredentials(
-                "AKIA2EFUHTUDLKKIIDN2",
-                "/OyOFXQ3KeOxNvJf8mIZ9fq7m/pVhXtPtCcClIVS"
+                "your-access-key",
+                "your-secret-key"
         );
         return AmazonS3ClientBuilder.
                 standard()
                 .withCredentials(new AWSStaticCredentialsProvider(awsCredentials))
-                .withRegion("ap-south-1")
+                .withRegion("region-of-S3")
                 .build();
     }
 
@@ -37,12 +37,12 @@ public class AmazonConfig {
                 .standard()
                 .withEndpointConfiguration(
                         new AwsClientBuilder.EndpointConfiguration(
-                                "dynamodb.ap-south-1.amazonaws.com", "ap-south-1"
+                                "dynamodb.ap-south-1.amazonaws.com", "region-of-DB"
                         )
                 )
                 .withCredentials(new AWSStaticCredentialsProvider(
                         new BasicAWSCredentials(
-                                "AKIA2EFUHTUDLKKIIDN2", "/OyOFXQ3KeOxNvJf8mIZ9fq7m/pVhXtPtCcClIVS"
+                                "your-access-key", "your-secret-key"
                         )
                 ))
                 .build();
