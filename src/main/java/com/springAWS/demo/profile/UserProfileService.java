@@ -1,6 +1,6 @@
 package com.springAWS.demo.profile;
 
-import com.springAWS.demo.bucket.BucketName;
+import com.springAWS.demo.datastore.DynamoDBFileStore;
 import com.springAWS.demo.filestore.FileStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,19 +16,21 @@ public class UserProfileService {
 
     private final UserProfileDataAccessService userProfileDataAccessService;
     private final FileStore fileStore;
+    private final DynamoDBFileStore dynamoDBFileStore;
 
     @Autowired
     public UserProfileService(UserProfileDataAccessService userProfileDataAccessService,
-                              FileStore fileStore) {
+                              FileStore fileStore, DynamoDBFileStore dynamoDBFileStore) {
         this.userProfileDataAccessService = userProfileDataAccessService;
         this.fileStore = fileStore;
+        this.dynamoDBFileStore = dynamoDBFileStore;
     }
 
     List<UserProfile> getUserProfiles() {
         return userProfileDataAccessService.getUserProfiles();
     }
 
-    void uploadUserProfileImage(UUID userProfileId, MultipartFile file) {
+    void uploadUserProfileImage(String userProfileId, MultipartFile file) {
         // 1. Check if image is not empty
         isFileEmpty(file);
         // 2. If file is an image
@@ -47,13 +49,18 @@ public class UserProfileService {
         try {
             fileStore.save(path, filename, Optional.of(metadata), file.getInputStream(), file);
             user.setUserProfileImageLink(filename);
+
+            // changes to make
+            dynamoDBFileStore.updateUserProfile(user);
+
+
         } catch (IOException e) {
             throw new IllegalStateException(e);
         }
 
     }
 
-    byte[] downloadUserProfileImage(UUID userProfileId) {
+    byte[] downloadUserProfileImage(String userProfileId) {
         UserProfile user = getUserProfileOrThrow(userProfileId);
         return fileStore.download(user);
 //        String path = String.format("%s",user.getUserProfileId());
@@ -70,7 +77,7 @@ public class UserProfileService {
         return metadata;
     }
 
-    private UserProfile getUserProfileOrThrow(UUID userProfileId) {
+    private UserProfile getUserProfileOrThrow(String userProfileId) {
         return userProfileDataAccessService
                 .getUserProfiles()
                 .stream()

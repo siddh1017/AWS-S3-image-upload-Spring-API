@@ -1,6 +1,6 @@
 package com.springAWS.demo.profile;
 
-import com.springAWS.demo.datastore.FakeUserProfileDataStore;
+import com.springAWS.demo.datastore.DynamoDBFileStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -9,13 +9,13 @@ import java.util.List;
 @Repository
 public class UserProfileDataAccessService {
     @Autowired
-    private final FakeUserProfileDataStore fakeUserProfileDataStore;
+    private final DynamoDBFileStore dynamoDBFileStore;
 
-    UserProfileDataAccessService(FakeUserProfileDataStore fakeUserProfileDataStore) {
-        this.fakeUserProfileDataStore = fakeUserProfileDataStore;
+    UserProfileDataAccessService(DynamoDBFileStore dynamoDBFileStore) {
+        this.dynamoDBFileStore = dynamoDBFileStore;
     }
 
     public List<UserProfile> getUserProfiles() {
-        return fakeUserProfileDataStore.getUserProfiles();
+        return dynamoDBFileStore.getUserProfiles();
     }
 }

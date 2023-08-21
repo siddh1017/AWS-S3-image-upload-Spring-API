@@ -54,7 +54,7 @@ public class FileStore {
     public byte[] download(UserProfile user) {
         try {
             String userFolder = "" + user.getUserProfileId();
-            String userImageLink  = user.getUserProfileImageLink().get();
+            String userImageLink  = user.getUserProfileImageLink();
             String s3Key = userFolder + "/" + userImageLink;
             System.out.println(s3Key);
 
